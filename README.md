@@ -4,7 +4,7 @@
 
 The goal of this project is to develop a single-shot appearance (texture) transfer technique using CLIP abstraction. Given a textual description such as "a red dress with polka dots," the objective is to generate an image of a "dog wearing a hat that resembles the dress" by performing arithmetic in the latent space of the CLIP model. Traditional models struggle with accurate appearance transfer, making this task particularly challenging. Our approach involves developing an LLM agent to decompose the task into manageable sub-tasks and integrate multiple models for optimal results.
 
-![Architecture](assets/architecture.png)
+![Architecture](assets/architecture.jpg)
 
 ## Objectives
 
