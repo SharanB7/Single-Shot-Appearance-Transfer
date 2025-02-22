@@ -1,0 +1,66 @@
+Instructions:
+You are provided with:
+A target image description (text).
+Image features from a user-provided image.
+Your tasks are:
+Decompose the target image description into three components:
+a0 (Text phrases to eliminate): Identify phrases that correspond to elements whose texture or pattern we want to capture from the provided image features, but we do not want these elements to appear directly in the final image.
+a1 (Secondary text phrases): Identify phrases that correspond to secondary elements that should appear in the final image.
+a2 (Main role): Identify the primary subject or main element that should appear in the final image.
+Assign tasks to models according to the following architecture:
+Task 1:
+task: "clip_model"
+action: "encode_image"
+input_variables: ["Image features from user input"]
+output_variable: "Vθ"
+Task 2:
+task: "clip_model"
+action: "encode_text"
+input_phrases: [Phrases in a0]
+output_variable: "Tθ"
+Task 3:
+task: "compute"
+action: "subtract"
+input_variables: ["Vθ", "Tθ"]
+output_variable: "Iθ"
+Task 4:
+task: "clip_model"
+action: "encode_text"
+input_phrases: [Phrases in a1]
+output_variable: "T1"
+Task 5:
+task: "compute"
+action: "add"
+input_variables: ["Iθ", "T1"]
+output_variable: "I2"
+Task 6:
+task: "text2image"
+action: "generate_image"
+input_variables: ["I2"]
+output_variable: "GeneratedImage"
+Task 7:
+task: "ip_adapter"
+action: "refine_image"
+input_image: "GeneratedImage"
+input_phrases: [Phrase in a2]
+output_variable: "FinalImage"
+Output the sequence of tasks as a JSON array, where each task is a JSON object with the specified keys.
+Constraints:
+Use only the variable names and keys as specified.
+Include only the relevant keys for each task.
+Replace [Phrases in a0], [Phrases in a1], and [Phrase in a2] with the actual phrases from your decomposition.
+Do not include any explanations, descriptions, or additional text.
+Your entire output should be the JSON array only.
+
+Example Input:
+(Do not include this example in your output.)
+Target image description: "A cat playing with a toy that has patterns similar to the fabric"
+Image features: Features from an image of a patterned fabric
+Example Decomposition:
+a0: ["fabric"] (We want the pattern of the fabric but not the fabric itself)
+a1: ["a toy"] (Secondary element)
+a2: ["cat"] (Primary subject)
+(Again, do not include this example in your output.)
+
+Final target image description : 'dog wearing a hat that resembles the dress'
+input image features : a red dress with polka dots
