@@ -50,7 +50,7 @@ The goal of this project is to develop a single-shot appearance (texture) transf
 
 - Utilized Stable Diffusion XL for final image generation.
 
-Developed a decision-making framework to dynamically select models based on input prompts.
+- Developed a decision-making framework to dynamically select models based on input prompts.
 
 ### Experimental Setup
 
@@ -71,3 +71,5 @@ Developed a decision-making framework to dynamically select models based on inpu
 - Conducted human manual evaluations to assess visual quality, style fidelity, and semantic accuracy.
 
 - Achieved significant improvements in pattern retention, semantic coherence, and real-world applicability.
+
+![Results](assets/results.png)
